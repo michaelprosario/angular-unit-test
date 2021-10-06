@@ -13,7 +13,7 @@ describe("jsonDataService", () => {
             };
 
             const jsonRepository = new Mock<AbstractJsonRepository>()
-            .setup(instance => instance.add(someObject, "point")) // this would be used for type discovering
+            .setup(instance => instance.add(someObject, "points")) // this would be used for type discovering
             .returns("new-record-id")
             .object();
 
@@ -23,10 +23,25 @@ describe("jsonDataService", () => {
             let response = service.add(someObject, "points");
 
             // assert
-            expect(response).toBeDefined();
-            expect(response).toEqual("foo");
+            expect(response).toBe("new-record-id");
         });
 
+        it("fails if collection is not defined", () => {
+            // arrange
+            let someObject = {
+                x: 1, y: 2, z: 3
+            };
+
+            const jsonRepository = new Mock<AbstractJsonRepository>()
+            .setup(instance => instance.add(someObject, "points")) // this would be used for type discovering
+            .returns("new-record-id")
+            .object();
+
+            let service = new JsonDataService(jsonRepository);
+
+            // act
+            expect(() => service.add(someObject, "")).toThrow(new Error("collection is not defined"));
+        });        
     });
 
 })

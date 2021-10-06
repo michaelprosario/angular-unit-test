@@ -9,6 +9,10 @@ export class JsonDataService
     }
 
     public add(aObject: any, collection: string): string {
+        if(!collection || collection === ""){
+            throw new Error("collection is not defined");
+        }
+
         return this.repository.add(aObject, collection);
     }
 
