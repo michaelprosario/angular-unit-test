@@ -1,4 +1,4 @@
-import { AbstractJsonRepository } from "core/interfaces/abstract-json-repository";
+import { AbstractJsonRepository } from "src/app/core/interfaces/abstract-json-repository";
 
 export class JsonDataService
 {

@@ -1,6 +1,6 @@
-import { AbstractJsonRepository } from "core/interfaces/abstract-json-repository";
+import { AbstractJsonRepository } from "src/app/core/interfaces/abstract-json-repository";
 import { JsonDataService } from "./json-data-service";
-import { mock,when,instance, verify } from "ts-mockito";
+import { mock, when, instance, verify } from "ts-mockito";
 
 describe("jsonDataService", () => {
 
@@ -21,11 +21,11 @@ describe("jsonDataService", () => {
             let response = service.add(someObject, "points");
 
             // assert
-
             expect(response).toBeDefined();
-            verify(mockRepository.add(someObject, "points")).called(1);
+            verify(jsonRepository.add(someObject, "points")).called();
         });
 
     });
 
 })
+
