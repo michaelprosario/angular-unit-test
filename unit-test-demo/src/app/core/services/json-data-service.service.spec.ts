@@ -1,6 +1,6 @@
 import { AbstractJsonRepository } from "src/app/core/interfaces/abstract-json-repository";
 import { JsonDataService } from "./json-data-service";
-import { mock, when, instance, verify } from "ts-mockito";
+import { Mock, It, Times } from "moq.ts";
 
 describe("jsonDataService", () => {
 
@@ -8,13 +8,15 @@ describe("jsonDataService", () => {
 
         it("returns record id on valid entry", () => {
             // arrange
-            let mockRepository = mock(AbstractJsonRepository);
             let someObject = {
-                x: 1, y:2, z: 3
+                x: 1, y: 2, z: 3
             };
-            
-            when(mockRepository.add(someObject, "points")).thenReturn('newRecordId');
-            let jsonRepository: AbstractJsonRepository = instance(mockRepository);
+
+            const jsonRepository = new Mock<AbstractJsonRepository>()
+            .setup(instance => instance.add(someObject, "point")) // this would be used for type discovering
+            .returns("new-record-id")
+            .object();
+
             let service = new JsonDataService(jsonRepository);
 
             // act
@@ -22,7 +24,7 @@ describe("jsonDataService", () => {
 
             // assert
             expect(response).toBeDefined();
-            verify(jsonRepository.add(someObject, "points")).called();
+            expect(response).toEqual("foo");
         });
 
     });

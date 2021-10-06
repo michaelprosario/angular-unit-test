@@ -1,4 +1,6 @@
 import { AbstractJsonRepository } from "src/app/core/interfaces/abstract-json-repository";
+// @ts-ignore
+import { v4 as uuidv4 } from 'uuid';
 
 export class JsonDataService
 {
@@ -6,8 +8,8 @@ export class JsonDataService
 
     }
 
-    public add(aObject: any, collection: string): string{
-        return "";
+    public add(aObject: any, collection: string): string {
+        return this.repository.add(aObject, collection);
     }
 
     public delete(id: string, collection: string): string{
