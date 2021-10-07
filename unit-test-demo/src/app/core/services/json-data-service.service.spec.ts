@@ -1,4 +1,3 @@
-import { AbstractJsonRepository } from "src/app/core/interfaces/abstract-json-repository";
 import { JsonDataService } from "./json-data-service";
 import { mock, instance, when, verify } from "ts-mockito";
 import { JsonRepository } from "src/app/data/json-repository";
@@ -7,7 +6,7 @@ describe("jsonDataService", () => {
 
     describe("add", () => {
 
-        it("returns record id on valid entry", () => {
+        it("should return record id on valid entry", () => {
             // arrange
             let someObject = {
                 x: 1, y: 2, z: 3
@@ -24,9 +23,10 @@ describe("jsonDataService", () => {
             // act
             let response = service.add(someObject, "points");
 
-            // assert
+            // assert            
             expect(response).toBe("new-record-id");
         });
+
 
 
         it("fails if collection is not defined", () => {
@@ -46,7 +46,6 @@ describe("jsonDataService", () => {
         });
 
     });
-
 
     describe("delete", () => {
 
