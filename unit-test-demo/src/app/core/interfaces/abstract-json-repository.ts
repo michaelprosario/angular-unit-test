@@ -9,5 +9,5 @@ export abstract class AbstractJsonRepository
     abstract delete(id: string, collection: string): boolean;
     abstract get(id: string, collection: string): any;
     abstract recordExists(id: string, collection: string): boolean;
-    abstract getAll(collection:string): [];
+    abstract getAll(collection:string): Array<any>;
 }

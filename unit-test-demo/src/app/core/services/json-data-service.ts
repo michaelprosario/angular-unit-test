@@ -4,8 +4,8 @@ import { v4 as uuidv4 } from 'uuid';
 
 export class JsonDataService
 {
-    constructor(private repository: AbstractJsonRepository){
-
+    constructor(private repository: AbstractJsonRepository)
+    {
     }
 
     public add(aObject: any, collection: string): string {
@@ -17,6 +17,7 @@ export class JsonDataService
     }
 
     public delete(id: string, collection: string): boolean{
+        
         if(!collection || collection === ""){
             throw new Error("collection is not defined");
         }
@@ -25,7 +26,7 @@ export class JsonDataService
             throw new Error("collection is not defined");
         }
 
-        if(this.repository.recordExists(id, collection))
+        if(!this.repository.recordExists(id, collection))
         {
             return false;
         }
@@ -43,18 +44,21 @@ export class JsonDataService
             throw new Error("collection is not defined");
         }
 
-        if(this.repository.recordExists(id, collection))
+        if(!this.repository.recordExists(id, collection))
         {
             return null;
         }
-
 
         return this.repository.get(id, collection);
     }
 
     public getAll(collection: string): Array<any>
     {
-        return [];
+        if(!collection || collection === ""){
+            throw new Error("collection is not defined");
+        }
+
+        return this.repository.getAll(collection);
     }
 
 }

@@ -36,6 +36,7 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
     "moq.ts": "^7.3.4",
+    "ts-mockito": "^2.6.1",
     "typescript": "~4.3.5"
   }
 }
